@@ -1,0 +1,37 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #ffe6f2;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #ff66b2;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.intro {
+  padding: 40px;
+  text-align: center;
+}
+
+footer {
+  background-color: #ffcce0;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
