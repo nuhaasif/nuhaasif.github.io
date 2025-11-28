@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Love Calculator ❤️</h1>
+
+  <p>Enter your name and your crush's name!</p>
+  <input type="text" id="name1" placeholder="Your name">
+  <input type="text" id="name2" placeholder="Crush's name">
+  <br>
+  <button onclick="calculateLove()">Calculate</button>
+
+  <p id="result"></p>
+
+  <div id="history">
+    <h3>Past Results</h3>
+    <ul id="historyList"></ul>
+  </div>
+
+  <script>
+    // ---------------------------
+    // LOAD HISTORY FROM LOCAL STORAGE
+    // ---------------------------
+    let history = JSON.parse(localStorage.getItem("loveHistory")) || [];
+
+    showHistory(); // load previous results on page open
+
+    // ---------------------------
+    // CALCULATE LOVE FUNCTION
+    // ---------------------------
+    function calculateLove() {
+      let name1 = document.getElementById("name1").value.trim();
+      let name2 = document.getElementById("name2").value.trim();
+
+      if (name1 === "" || name2 === "") {
+        alert("Please fill both names!");
+        return;
+      }
+
+      let score = Math.floor(Math.random() * 101);
+
+      let message = "";
+      if (score > 80) {
+        message = "Wow! Perfect match 😍";
+      } else if (score > 50) {
+        message = "Pretty good chance 💕";
+      } else {
+        message = "Maybe just friends 😅";
+      }
+
+      let resultText =
+        name1 + " + " + name2 + " = " + score + "% — " + message;
+
+      document.getElementById("result").innerText = resultText;
+
+      // save to array
+      history.push(resultText);
+
+      // save to localStorage
+      localStorage.setItem("loveHistory", JSON.stringify(history));
+
+      showHistory();
+    }
+
+    // ---------------------------
+    // SHOW HISTORY FUNCTION
+    // ---------------------------
+    function showHistory() {
+      let listHTML = "";
+      for (let i = 0; i < history.length; i++) {
+        listHTML += "<li>" + history[i] + "</li>";
+      }
+      document.getElementById("historyList").innerHTML = listHTML;
+    }
+  </script>
+
+</body>
+</html>
