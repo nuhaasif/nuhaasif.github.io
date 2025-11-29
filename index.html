@@ -6,15 +6,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+ 
   <h1>Love Calculator ❤️</h1>
-
+  
   <p>Enter your name and your crush's name!</p>
   <input type="text" id="name1" placeholder="Your name">
   <input type="text" id="name2" placeholder="Crush's name">
   <br>
   <button onclick="calculateLove()">Calculate</button>
-
+  
+ // empty paragraph where your result  will appear
   <p id="result"></p>
 
   <div id="history">
@@ -23,25 +24,25 @@
   </div>
 
   <script>
-    // ---------------------------
+    
     // LOAD HISTORY FROM LOCAL STORAGE
-    // ---------------------------
+   
     let history = JSON.parse(localStorage.getItem("loveHistory")) || [];
 
     showHistory(); // load previous results on page open
 
-    // ---------------------------
-    // CALCULATE LOVE FUNCTION
-    // ---------------------------
+    
+    // calculate love
     function calculateLove() {
       let name1 = document.getElementById("name1").value.trim();
       let name2 = document.getElementById("name2").value.trim();
 
+      // gives an alert if one of the boxes are not filled in
       if (name1 === "" || name2 === "") {
         alert("Please fill both names!");
         return;
       }
-
+      //gives a whole number between 0–100.
       let score = Math.floor(Math.random() * 101);
 
       let message = "";
@@ -52,6 +53,7 @@
       } else {
         message = "Maybe just friends 😅";
       }
+      //This builds the final text to display.
 
       let resultText =
         name1 + " + " + name2 + " = " + score + "% — " + message;
@@ -67,14 +69,16 @@
       showHistory();
     }
 
-    // ---------------------------
+   
     // SHOW HISTORY FUNCTION
-    // ---------------------------
+    // Loops through the history array
+
     function showHistory() {
       let listHTML = "";
       for (let i = 0; i < history.length; i++) {
         listHTML += "<li>" + history[i] + "</li>";
       }
+      //It takes the list of  items you created and puts them into the HTML unordered list on the page.
       document.getElementById("historyList").innerHTML = listHTML;
     }
   </script>
